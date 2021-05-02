@@ -1,104 +1,40 @@
-//union of two arrays
-//method1:
+
+
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
 
-void solve()
+int printUnion(int a1[], int a2[], int m, int n)
 {
+    int i = 0;
+    int j = 0;
+    while (i < m && j < n)
 
-    int n;
-    cin >> n;
-    int a[n];
-    for (int i = 0; i < n; i++)
     {
-        cin >> a[i];
-    }
-    int m;
-    cin >> m;
-    int b[m];
-    for (int i = 0; i < m; i++)
-    {
-        cin >> b[i];
-    }
-    int c[n + m];
-    int k = 0;
-    for (int i = 0; i < n; i++)
-    {
-        c[k++] = a[i];
-    }
-    for (int i = 0; i < m; i++)
-    {
-        int l = 0;
-        for (int j = 0; j < n; j++)
-        {
-            if (c[j] == b[i])
-            {
-                l++;
-            }
-        }
-        if (l > 0)
-            continue;
+        if (a1[i] < a2[j])
+            cout << a1[i++] << " ";
+
+        else if (a1[i] > a2[j])
+            cout << a2[j++] << " ";
         else
         {
-            c[k++] = b[i];
+            cout << a2[j++] << " ";
+            i++;
         }
     }
-    for (int i = 0; i < k; i++)
-    {
-        cout << c[i] << " ";
-    }
-}
-int main()
-{
-    int t = 1;
-    ios_base::sync_with_stdio(false);
-    cout.tie(nullptr);
-    //cin>>t;
-    while (t--)
-    {
-        solve();
-    }
+    while (i < m)
+        cout << a1[i++] << " ";
+
+    while (j < n)
+        cout << a2[j++] << " ";
 }
 
-
-//method2:
-
-/*#include<bits/stdc++.h>
-using namespace std;
 int main()
 {
-    int t=1;
-    ios_base::sync_with_stdio(false);
-    cout.tie(nullptr);
-    cin>>t;
-    while(t--)
-    {
-        int n,m;
-        cin>>n>>m;
-        int a[n],b[m];
-        unordered_map<int,int> map;
+    int a1[] = {1, 2, 4, 5, 6};
+    int a2[] = {2, 3, 5, 7};
 
+    int m = sizeof(a1) / sizeof(a1[0]);
+    int n = sizeof(a2) / sizeof(a2[0]);
 
-        for(int i=0;i<n;i++)
-        {
-            cin>>a[i];
-            map[a[i]]++;
-        }
-        for(int i=0;i<m;i++)
-        {
-            cin>>b[i];
-            map[b[i]]++;
-        }
-        cout<<map.size()<<endl;
-        
-    }
-    return 0;
-}*/
-//Input :2
-//5 3
-//1 2 3 4 5
-//1 2 3
-//output
-//5
-//7
+    printUnion(a1, a2, m, n);
+}
